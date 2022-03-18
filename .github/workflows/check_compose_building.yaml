@@ -1,0 +1,19 @@
+name: Docker compose building
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: "Checking if docker compose at least building"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Building docker compose
+        run: docker-compose build
+  

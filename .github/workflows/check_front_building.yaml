@@ -1,0 +1,19 @@
+name: Front building
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: "Checking if front is at least building"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Building front
+        run: cd front && npm install && CI=false npm run-script build
+  
