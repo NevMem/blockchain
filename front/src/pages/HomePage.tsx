@@ -23,7 +23,7 @@ const CompanyCard = (props: {company: Company}) => {
                 <Stack justifyContent="space-between" style={{width: '100%'}}>
                     <Typography variant='h6'>{props.company.name}</Typography>
                     <Stack direction='row' justifyContent="flex-end" spacing={4}>
-                        <Button>Info</Button>
+                        <Button color='secondary'>Info</Button>
                         <Button onClick={navigateToBuyTokens} variant="contained">Buy tokens</Button>
                     </Stack>
                 </Stack>
@@ -68,7 +68,15 @@ const HomePage = () => {
 
     return (
         <WithAppBar>
-            <Stack spacing={2} style={{marginTop: '16px'}}>
+            <Stack spacing={2} style={{marginTop: '16px', marginBottom: '16px'}}>
+                <Paper style={{padding: '24px', paddingTop: '36px', paddingBottom: '36px'}} variant='outlined'>
+                    <Stack spacing={4} justifyItems='center'>
+                        <Typography variant='h4' align='center'>На данном сайте вы можете приобрести токены различных компаний в обмен на ETH</Typography>
+                        <Stack direction='row' justifyContent='space-around'>
+                            <Button variant='contained' color='primary'>Купить!</Button>
+                        </Stack>
+                    </Stack>
+                </Paper>
                 <Typography variant="h3">Компании</Typography>
                 <Paper variant="outlined" style={{padding: '16px'}}>
                     <CompaniesList />
