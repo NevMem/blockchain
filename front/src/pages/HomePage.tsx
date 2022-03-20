@@ -1,33 +1,9 @@
 import { AppBar, Button, Container, Toolbar, Typography, Paper, Stack, Icon, Divider } from "@mui/material";
 import { Fragment } from 'react';
 import { useNavigate } from "react-router-dom";
+import WithAppBar from "../components/WithAppBar";
 import { Company } from "../data/Company";
-
-const WithAppBar = (props: { children: any | undefined }) => {
-    return (
-        <Fragment>
-            <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="div"
-                            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                        >
-                            Blockchain
-                        </Typography>
-                        <Button>Companies</Button>
-                        <Button>Profile</Button>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-            <Container>
-                {props.children}
-            </Container>
-        </Fragment>
-    );
-};
+import companiesService from "../service/CompaniesService";
 
 const CompanyCard = (props: {company: Company}) => {
 
@@ -67,30 +43,12 @@ const CompaniesList = (props: {companies: Company[]}) => {
 
 const HomePage = () => {
 
-    const companies: Company[] = [
-        {
-            id: 'google',
-            name: 'Google',
-            imageUrl: 'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png',
-        },
-        {
-            id: 'twitter',
-            name: 'Twitter',
-            imageUrl: 'https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-logo-vector-png-clipart-1.png',
-        },
-        {
-            id: 'space-x',
-            name: 'SpaceX',
-            imageUrl: 'https://www.freepnglogos.com/uploads/astronaut-png/astronaut-space-clip-art-5.png',
-        },
-    ];
-
     return (
         <WithAppBar>
             <Stack spacing={2} style={{marginTop: '16px'}}>
                 <Typography variant="h3" >Companies</Typography>
                 <Paper variant="outlined" style={{padding: '16px'}}>
-                    <CompaniesList companies={companies} />
+                    <CompaniesList companies={companiesService.companies()} />
                 </Paper>
             </Stack>
         </WithAppBar>

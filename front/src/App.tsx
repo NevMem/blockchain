@@ -6,6 +6,7 @@ import { ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import BuyPage from './pages/BuyPage';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage/>} />
+          <Route path="/buy/:id" element={<BuyPage/>} />
         </Routes>
       </HashRouter>
     </ThemeProvider>
