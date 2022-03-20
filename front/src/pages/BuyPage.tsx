@@ -8,7 +8,7 @@ import useAsyncRequest, { RequestError, RequestSuccess } from "../utils/async";
 const BuyCompanyTokensCard = (props: { company: Company }) => {
     return (
         <Stack spacing={2} style={{marginTop: '16px'}}>
-            <Typography variant='h3'>Покупка токенов компании: {props.company.name}</Typography>
+            <Typography variant='h3'>Покупка токенов компании {props.company.name}</Typography>
             <Paper variant='outlined' style={{padding: '8px'}}></Paper>
         </Stack>
     );

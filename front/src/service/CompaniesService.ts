@@ -19,8 +19,17 @@ class CompaniesService {
         },
     ];
 
-    companies(): Company[] {
-        return this.companiesImpl;
+    companies(): Promise<Company[]> {
+        return new Promise((res, rej) => {
+            setTimeout(
+                () => {
+                    // rej(Error("kek"))
+                    res(this.companiesImpl);
+                },
+                1500
+            );
+        });
+        // return this.companiesImpl;
     }
 
     company(id: string): Promise<Company> {
