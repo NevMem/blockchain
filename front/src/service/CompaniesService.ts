@@ -25,7 +25,7 @@ class CompaniesService {
                 () => {
                     res(this.companiesImpl);
                 },
-                1500
+                500
             );
         });
     }
@@ -39,7 +39,7 @@ class CompaniesService {
                 } else {
                     rej(Error("Компания не найдена"));
                 }
-            }, 1500)
+            }, 500)
         });
     }
 };
