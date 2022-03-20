@@ -23,13 +23,11 @@ class CompaniesService {
         return new Promise((res, rej) => {
             setTimeout(
                 () => {
-                    // rej(Error("kek"))
                     res(this.companiesImpl);
                 },
                 1500
             );
         });
-        // return this.companiesImpl;
     }
 
     company(id: string): Promise<Company> {
