@@ -1,6 +1,6 @@
 import WithAppBar from "../components/WithAppBar";
 import { useParams } from "react-router-dom";
-import { Stack, Typography, Paper, CircularProgress } from "@mui/material";
+import { Stack, Typography, Paper, CircularProgress, Alert, AlertTitle } from "@mui/material";
 import companiesService from "../service/CompaniesService";
 import { Company } from "../data/Company";
 import useAsyncRequest, { RequestError, RequestSuccess } from "../utils/async";
@@ -14,12 +14,15 @@ const BuyCompanyTokensCard = (props: { company: Company }) => {
     );
 };
 
-const ErrorBuyCompanyTokensCard = () => {
+const ErrorBuyCompanyTokensCard = (props: { error: RequestError }) => {
     return (
         <Stack spacing={2} style={{marginTop: '16px'}}>
             <Typography variant='h3'>Ошибка загрузки компании</Typography>
             <Paper variant='outlined' style={{padding: '8px'}}>
-                <Typography>Мы уже работаем над исправлением</Typography>
+                <Alert severity='error'>
+                    <AlertTitle>Мы уже работаем над исправлением</AlertTitle>
+                    {JSON.stringify(props.error.message)}    
+                </Alert>
             </Paper>
         </Stack>
     );
@@ -47,7 +50,7 @@ const BuyPageImpl = () => {
     });
 
     if (request instanceof RequestError) {
-        return <ErrorBuyCompanyTokensCard />;
+        return <ErrorBuyCompanyTokensCard error={request} />;
     }
 
     if (request instanceof RequestSuccess) {

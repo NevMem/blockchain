@@ -33,7 +33,12 @@ class CompaniesService {
     company(id: string): Promise<Company> {
         return new Promise((res, rej) => {
             setTimeout(() => {
-                res(this.companiesImpl.find(elem => elem.id === id)!)
+                const company = this.companiesImpl.find(elem => elem.id === id);
+                if (company !== undefined) {
+                    res(company!);
+                } else {
+                    rej(Error("Компания не найдена"));
+                }
             }, 1500)
         });
     }
