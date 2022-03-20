@@ -1,0 +1,31 @@
+name: Upload front ot S3
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Uploading front to s3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Building front
+        run: cd front && npm install && CI=false npm run-script build
+      - name: Deleting files on S3
+        run: aws --endpoint-url=https://storage.yandexcloud.net s3 rm --recursive s3://hwblockchain
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET }}
+          AWS_DEFAULT_REGION: ru-central1
+      - name: Uploading to s3
+        run: aws --endpoint-url=https://storage.yandexcloud.net s3 cp --recursive web/build/ s3://hwblockchain
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET }}
+          AWS_DEFAULT_REGION: ru-central1
+  
