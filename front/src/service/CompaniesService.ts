@@ -25,7 +25,7 @@ class CompaniesService {
                 () => {
                     res(this.companiesImpl);
                 },
-                500
+                200
             );
         });
     }
@@ -39,7 +39,15 @@ class CompaniesService {
                 } else {
                     rej(Error("Компания не найдена"));
                 }
-            }, 500)
+            }, 200)
+        });
+    }
+
+    buyTokens(): Promise<string> {
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                res("");
+            }, 200);
         });
     }
 };
