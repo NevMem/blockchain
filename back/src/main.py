@@ -1,5 +1,3 @@
-from crypt import methods
-from aiohttp import request
 from flask import Flask
 app = Flask(__name__)
 
@@ -7,7 +5,7 @@ app = Flask(__name__)
 @app.route('/create_token', methods=['POST'])
 def create_token():
     request_json = request.get_json()
-    token_name = request_json['token_name'] # короткое имя токена 
+    token_name = request_json['token_name'] # короткое имя токена
     token_full_name =  request_json['token_full_name'] # длинное имя токена
     exchange_rate = request_json['exchange_rate'] # курс обмена в эфир
     amount = request_json['amount'] # общее количество токенов
