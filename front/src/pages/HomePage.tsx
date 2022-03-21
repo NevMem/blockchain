@@ -21,7 +21,8 @@ const CompanyCard = (props: {company: Company}) => {
                     <img src={props.company.imageUrl} alt={props.company.id} style={{objectFit: 'contain', width: '120px', height: '120px'}} />
                 </div>
                 <Stack justifyContent="space-between" style={{width: '100%'}}>
-                    <Typography variant='h6'>{props.company.name}</Typography>
+                    <Typography variant='h5'>{props.company.name}</Typography>
+                    <Typography variant='h6'>1 токен = {props.company.rate} ETH</Typography>
                     <Stack direction='row' justifyContent="flex-end" spacing={4}>
                         <Button color='secondary'>Info</Button>
                         <Button onClick={navigateToBuyTokens} variant="contained">Buy tokens</Button>
